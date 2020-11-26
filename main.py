@@ -17,7 +17,7 @@ FPS = 60
 POWERUP_TIME = 4000
 meteor_speed1 = 1
 meteor_speed2 = 6
-fake_score = 10
+fake_score = 1000
 
 # Задаем цвета
 WHITE = (255, 255, 255)
@@ -74,12 +74,14 @@ def new_mob():
 
 def show_go_screen():
     screen.blit(background, background_rect)
-    draw_text(screen, "В рамках этой увлекательной игры жанра Shoot 'em up (shmup или STG) Вы погрузитесь в "
+    draw_text(screen, "В рамках этой увлекательной игры жанра Shoot 'em up (shmup)"
               , 18, int(WIDTH / 2), int(HEIGHT * 3 / 4))
-    draw_text(screen, "потрясающую атмосферу космоса и станете капитаном космического корабля, в задачу которого "
-              , 18, int(WIDTH / 2), int(HEIGHT * 3 / 4) + 15)
-    draw_text(screen, "входит уничтожение многочисленных метеоритов!", 18, int(WIDTH / 2), int(HEIGHT * 3 / 4) + 30)
-
+    draw_text(screen, "Вы погрузитесь в потрясающую атмосферу космоса и станете"
+              , 18, int(WIDTH / 2), int(HEIGHT * 3 / 4) + 25)
+    draw_text(screen, "капитаном космического корабля, в задачу которого входит", 18, int(WIDTH / 2),
+              int(HEIGHT * 3 / 4) + 50)
+    draw_text(screen, "уничтожение многочисленных метеоритов!", 18, int(WIDTH / 2),
+              int(HEIGHT * 3 / 4) + 75)
     for i in range(len(menu_items)):  # goes through each item
         make_button(screen, SILVER, BLACK, 120, 100 + (100 * i), int(WIDTH / 2), 60, menu_items[i])
 
@@ -93,7 +95,6 @@ def show_go_screen():
                 if event.button == 1:
                     for i in range(len(menu_items)):  # check every button
                         if button_check(event.pos, 120, 100 + (100 * i), int(WIDTH / 2), 60):
-                            print(i)
                             if i == 0:
                                 return
                             elif i == 1:
@@ -413,7 +414,7 @@ while running:
         score = 0
         meteor_speed1 = 1
         meteor_speed2 = 6
-        fake_score = 10
+        fake_score = 1000
         player.shoot_delay = 750
         show_go_screen()
         all_sprites = pygame.sprite.Group()
@@ -442,7 +443,7 @@ while running:
     if score > fake_score:
         meteor_speed1 += 1
         meteor_speed2 += 1
-        fake_score += 10
+        fake_score += 1000
         player.shoot_delay -= 50
         if player.shoot_delay <= 300:
             player.shoot_delay = 300
@@ -512,5 +513,3 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
-
-
